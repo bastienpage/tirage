@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Tirage au Sort ULTRA-SECRET 8P</title>
+    <title>Tirage Sécurisé par PIN</title>
     <style>
       body {
         font-family: sans-serif;
@@ -34,14 +34,22 @@
         margin-top: 20px;
         font-weight: bold;
         font-size: 20px;
-        color: #e74c3c;
         min-height: 50px;
+      }
+      .cible-done {
+        color: #2ecc71;
+      }
+      .cible-active {
+        color: #e74c3c;
       }
     </style>
   </head>
   <body>
-    <h1>🎄 Tirage Secret - 8 Participants 🎄</h1>
-    <p>Clique sur ton prénom pour voir tes 2 missions :</p>
+    <h1>🎄 Tirage Sécurisé par PIN 🎄</h1>
+    <p>
+      Clique sur ton prénom et entre ton code PIN personnel pour voir tes
+      missions :
+    </p>
 
     <div id="buttons">
       <button class="btn" onclick="montrer('Sandra')">Je suis Sandra</button>
@@ -57,24 +65,52 @@
     <div id="resultat"></div>
 
     <script>
-      // ATTENTION BASTIEN : Cette variable contient les résultats encodés pour 8 personnes. Ne lis pas !
-      const encodedData =
-        "eyJTYW5kcmEiOlsiTmljbyIsIkxvbG8iXSwiTmljbyI6WyJNYWciLCJZbyJdLCJNYWciOlsiSXNhIiwiRGFub3UiXSwiSXNhIjpbIkJhc3RpZW4iLCJNYWciXSwiQmFzdGllbiI6WyJMb2xvIiwiSXNhIl0sIkxvbG8iOlsiWW8iLCJCYXN0aWVuIl0sIllvIjpbIkRhbm91IiwiU2FuZHJhIl0sIkRhbm91IjpbIlNhbmRyYSIsIk5pY28iXX0=";
+      // Codes PIN pour la vérification
+      const passwordMap = {
+        Sandra: "4872",
+        Bastien: "2159",
+        Nico: "9301",
+        Lolo: "6745",
+        Mag: "1083",
+        Yo: "5526",
+        Isa: "8290",
+        Danou: "3417",
+      };
 
-      // Décodage des données (atob pour Base64, puis JSON.parse)
+      // Données encodées du tirage (Identiques au tirage asymétrique précédent)
+      const encodedData =
+        "eyJTYW5kcmEiOlsiTmljbyIsIk1hZyJdLCJOaWNvIjpbIk1hZyIsIlNhbmRyYSJdLCJNYWciOlsiSXNhIiwiTG9sbyJdLCJJc2EiOlsiQmFzdGllbiIsIlBhcnRpY2lwYXRpb24gdGVybWlu6WUiXSwiQmFzdGllbiI6WyJMb2xvIiwiWW8iXSwiTG9sbyI6WyJZbyIsIkJhc3RpZW4iXSwiWW8iOlsiRGFub3UiLCJOaWNvIl0sIkRhbm91IjpbIlNhbmRyYSIsIlBhcnRpY2lwYXRpb24gdGVybWlu6WUiXX0=";
+
+      // Décodage des données
       const decodedJson = atob(encodedData);
       const tirages = JSON.parse(decodedJson);
 
+      function formatCible(cible) {
+        if (cible.includes("terminée")) {
+          return `<span class="cible-done">${cible}</span>`;
+        }
+        return `<span class="cible-active">${cible}</span>`;
+      }
+
       function montrer(nom) {
         const res = document.getElementById("resultat");
-        // Double vérification pour éviter les clics accidentels
-        if (
-          confirm(
-            "Es-tu bien " + nom + " ? (Attention, le résultat va s'afficher !)"
-          )
-        ) {
+        const userPin = prompt(`Entre ton code PIN personnel pour ${nom} :`);
+
+        if (userPin === null) {
+          // L'utilisateur a annulé
+          res.innerHTML = "";
+          return;
+        }
+
+        // Vérification du mot de passe
+        if (userPin === passwordMap[nom]) {
           const cibles = tirages[nom];
-          res.innerHTML = `🎁 **${nom}**, tes cibles sont :<br>1️⃣ Tirage 1 : **${cibles[0]}**<br>2️⃣ Tirage 2 : **${cibles[1]}**`;
+          res.innerHTML =
+            `✅ ACCÈS AUTORISÉ !<br><br>🎁 **${nom}**, tes missions sont :<br>` +
+            `1️⃣ Tirage 1 : ${formatCible(cibles[0])}<br>` +
+            `2️⃣ Tirage 2 : ${formatCible(cibles[1])}`;
+        } else {
+          res.innerHTML = `<span style="color: red;">❌ Code PIN incorrect. Réessaie.</span>`;
         }
       }
     </script>
