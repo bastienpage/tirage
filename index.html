@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="fr">
   <head>
     <meta charset="UTF-8" />
@@ -67,20 +67,19 @@
     <script>
       // Codes PIN pour la vérification
       const passwordMap = {
-        Sandra: "4872",
-        Bastien: "2159",
-        Nico: "9301",
-        Lolo: "6745",
-        Mag: "1083",
-        Yo: "5526",
-        Isa: "8290",
-        Danou: "3417",
+        Sandra: "0202",
+        Bastien: "0112",
+        Nico: "1804",
+        Lolo: "2111",
+        Mag: "1209",
+        Yo: "1001",
+        Isa: "2110",
+        Danou: "0308",
       };
 
       // Données encodées du tirage (Identiques au tirage asymétrique précédent)
       const encodedData =
-        "eyJTYW5kcmEiOlsiTmljbyIsIk1hZyJdLCJOaWNvIjpbIk1hZyIsIlNhbmRyYSJdLCJNYWciOlsiSXNhIiwiTG9sbyJdLCJJc2EiOlsiQmFzdGllbiIsIlBhcnRpY2lwYXRpb24gdGVybWlu6WUiXSwiQmFzdGllbiI6WyJMb2xvIiwiWW8iXSwiTG9sbyI6WyJZbyIsIkJhc3RpZW4iXSwiWW8iOlsiRGFub3UiLCJOaWNvIl0sIkRhbm91IjpbIlNhbmRyYSIsIlBhcnRpY2lwYXRpb24gdGVybWlu6WUiXX0=";
-
+        "eyJTYW5kcmEiOlsiSXNhIiwiTmljbyJdLCJCYXN0aWVuIjpbIkxvbG8iLCJNYWciXSwiTmljbyI6WyJEYW5vdSIsIkJhc3RpZW4iXSwiTG9sbyI6WyJCYXN0aWVuIiwiWW8iXSwiTWFnIjpbIlNhbmRyYSIsIkxvbG8iXSwiWW8iOlsiTmljbyIsIlNhbmRyYSJdLCJJc2EiOlsiTWFnIiwiUGFydGljaXBhdGlvbiB0ZXJtaW7pZSJdLCJEYW5vdSI6WyJZbyIsIlBhcnRpY2lwYXRpb24gdGVybWlu6WUiXX0=";
       // Décodage des données
       const decodedJson = atob(encodedData);
       const tirages = JSON.parse(decodedJson);
