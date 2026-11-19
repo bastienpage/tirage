@@ -79,7 +79,8 @@
 
       // Données encodées du tirage (Identiques au tirage asymétrique précédent)
       const encodedData =
-        "eyJTYW5kcmEiOlsiRGFub3UiLCJMb2xvIl0sIkJhc3RpZW4iOlsiTG9sbyIsIllvIl0sIk5pY28iOlsiQmFzdGllbiIsIk1hZyJdLCJMb2xvIjpbIk1hZyIsIkJhc3RpZW4iXSwiTWFnIjpbIk5pY28iLCJTYW5kcmEiXSwiWW8iOlsiSXNhIiwiTmljbyJdLCJJc2EiOlsiU2FuZHJhIiwiUGFydGljaXBhdGlvbiB0ZXJtaW7pZSJdLCJEYW5vdSI6WyJZbyIsIlBhcnRpY2lwYXRpb24gdGVybWlu6WUiXX0=";
+        "eyJTYW5kcmEiOlsiTmljbyIsIk1hZyJdLCJCYXN0aWVuIjpbIllvIiwiTG9sbyJdLCJOaWNvIjpbIk1hZyIsIkJhc3RpZW4iXSwiTG9sbyI6WyJTYW5kcmEiLCJZbyJdLCJNYWciOlsiRGFub3UiLCJTYW5kcmEiXSwiWW8iOlsiQmFzdGllbiIsIklzYSJdLCJJc2EiOlsiUGFydGljaXBhdGlvbiB0ZXJtaW7pZSIsIk5pY28iXSwiRGFub3UiOlsiTG9sbyIsIlBhcnRpY2lwYXRpb24gdGVybWlu6WUiXX0=";
+
       // Décodage des données
       const decodedJson = atob(encodedData);
       const tirages = JSON.parse(decodedJson);
